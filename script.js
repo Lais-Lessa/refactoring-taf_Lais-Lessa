@@ -1,15 +1,61 @@
-// Implemente aqui as funções
 
-
-
-
-
-function areCandidateResultsValid() {
-
+function testHeight (gender, height){
+    if(gender == "male" && height >= 1.70){
+        return true;
+    } else if (gender == "female" && height >= 1.60){
+        return true;
+    } else{
+        return false;
+    }     
 }
 
-// Chamando a função com os parametros recebidos via script de teste
-// e atribuindo a variavel que devera ser mostrada no console
+function testBar (gender, barReps, barSeconds){
+    if(gender == "male" && (barReps >= 6 || barSeconds <=15)){
+        return true;
+    } else if (gender == "female" && (barReps >= 5 || barSeconds <=12)){
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function testAbs (abs){
+    if(abs >= 41){
+        return true;
+} else {
+    return false;
+}
+}
+
+function testRun (gender, runDistance, runTime){
+    if((gender == "male" && (runDistance >= 3000 && runTime <= 720)) || (runDistance >= 5000 && runTime <= 1200)){
+        return true;
+    } else if(gender == "female" && (runDistance >= 4000 && runTime <= 900) || (runDistance >= 6000 && runTime <= 1320)){
+        return true;
+    } else {
+        return false;
+    }
+}
+    
+function testSwin (swimDistance, swimTime, diveTime){
+    if((swimDistance >= 100 && swimTime <= 60) || diveTime <= 30){
+        return true;
+    } else {
+        return false;
+    }
+}
+   
+
+function areCandidateResultsValid(gender, height, barReps, barSeconds,abs, runDistance,runTime,swimDistance, swimTime, diveTime) {
+   
+   if(testHeight(gender, height) && testBar(gender, barReps, barSeconds) &&  testAbs(abs) && testRun(gender, runDistance, runTime) && testSwin( swimDistance, swimTime, diveTime)){
+    return true;
+   } else {
+    return false;
+   }
+}
+
+
 const areCandidateValid = areCandidateResultsValid(
     process.argv[2], // Genero
     process.argv[3], // Altura
@@ -23,4 +69,9 @@ const areCandidateValid = areCandidateResultsValid(
     process.argv[11], // Tempo total de mergulho em segundos
 );
 
-// Chame aqui a função que mostra o resultado no console
+function showMessage (message){
+    let str = message.toString();
+    console.log(str.toUpperCase());
+
+}
+showMessage(areCandidateValid);
